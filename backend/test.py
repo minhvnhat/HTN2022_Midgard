@@ -21,21 +21,21 @@ with conn.cursor() as cur:
     conn.commit()
     print(res)
 
-# # Test PonyORM
-# from pony.orm import Database, db_session
+# Test PonyORM
+from pony.orm import Database, db_session
 
-# db = Database()
-# db_params = dict(provider='cockroach',
-#                  user=user,
-#                  host=host,
-#                  port=26257,
-#                  database=f'{cluster}.defaultdb',
-#                  password=password)
+db = Database()
+db_params = dict(provider='cockroach',
+                 user=user,
+                 host=host,
+                 port=26257,
+                 database=f'{cluster}.defaultdb',
+                 password=password)
 
-# db.bind(**db_params)  # Bind Database object to the real database
+db.bind(**db_params)  # Bind Database object to the real database
 
-# @db_session
-# def test():
-#     res = db.select('SELECT now()')
-#     print(res)
-# test()
+@db_session
+def test():
+    res = db.select('SELECT now()')
+    print(res)
+test()
